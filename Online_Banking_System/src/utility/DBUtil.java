@@ -3,8 +3,8 @@ package utility;
 import java.sql.*;
 
 public class DBUtil {
-	public static void main(String[] args) {
-		
+	public static Connection provideConn() {
+		Connection connect = null;
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 		} catch (ClassNotFoundException e) {
@@ -14,16 +14,16 @@ public class DBUtil {
 		
 		String url = "jdbc:mysql://localhost:3306/Bank_of_future";
 		
-		try(Connection connect = DriverManager.getConnection(url, "root", "Suhaib")){
+		try{
+			connect = DriverManager.getConnection(url, "root", "Suhaib");
 			
-			if(connect!=null) {
-				System.out.println("Connect");
-			}
 			
 		} catch (SQLException e) {
 			
 			e.printStackTrace();
 		}
+		
+		return connect;
 		
 	}
 

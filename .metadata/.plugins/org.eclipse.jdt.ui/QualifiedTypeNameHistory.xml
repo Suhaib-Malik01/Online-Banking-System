@@ -1,2 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<qualifiedTypeNameHistroy/>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="Bean.AdminBean"/>
+    <fullyQualifiedTypeName name="Dao.AdminDao"/>
+    <fullyQualifiedTypeName name="Dao.AdminDaoImpl"/>
+    <fullyQualifiedTypeName name="Bean.UserBean"/>
+    <fullyQualifiedTypeName name="java.sql.Connection"/>
+    <fullyQualifiedTypeName name="utility.DBUtil"/>
+    <fullyQualifiedTypeName name="java.sql.PreparedStatement"/>
+    <fullyQualifiedTypeName name="Dao.UserDao"/>
+    <fullyQualifiedTypeName name="Dao.UserDaoImpl"/>
+</qualifiedTypeNameHistroy>

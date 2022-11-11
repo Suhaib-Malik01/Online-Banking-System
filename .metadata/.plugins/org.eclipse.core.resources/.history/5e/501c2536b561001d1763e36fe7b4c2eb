@@ -1,0 +1,10 @@
+package Bean;
+
+public class UserBean {
+	public String FirstName;
+	public String LastName;
+	public String Phone;
+	public String email;
+	public String 
+
+}
