@@ -1,0 +1,37 @@
+package UseCase;
+
+import java.util.*;
+
+import Dao.AdminDao;
+import Dao.AdminDaoImpl;
+public class Main {
+	
+	public static void main(String[] args) {
+		System.out.println("----------------------" + "\n"
+						 + "| 1.Login as Admin    |" + "\n" 
+					     + "| 2.Login as customer |" + "\n"
+					     + "| 3.Exit              |"
+						 + "----------------------");
+		
+		Scanner sc = new Scanner(System.in);
+		
+		int n = sc.nextInt();
+		if(n==1) {
+			System.out.println("Enter Username: ");
+			String Username = sc.next();
+			System.out.print("Enter Password: ");
+			String Password = sc.next();
+			
+			AdminDao admindao = new AdminDaoImpl();
+			
+			String msg = admindao.adminLogin(Username, Password);
+			
+			System.out.println(msg);
+		}
+		
+		
+	}
+	
+	
+
+}

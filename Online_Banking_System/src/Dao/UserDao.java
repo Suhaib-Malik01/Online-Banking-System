@@ -1,5 +1,9 @@
 package Dao;
 
-public interface UserDao {
+import Bean.UserBean;
 
+public interface UserDao {
+	
+	public String SignUp(UserBean user);
+	
 }

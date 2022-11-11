@@ -1,0 +1,33 @@
+package Dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+import Bean.UserBean;
+import utility.DBUtil;
+
+public class UserDaoImpl implements UserDao {
+
+	@Override
+	public String SignUp(UserBean user) {
+		
+		String msg = "Sign up Successfull";
+		
+		Connection conn = DBUtil.provideConn();
+		
+		try {
+			PreparedStatement ps = conn.prepareStatement("insert into signup values(?,?,?,?,?,?,?,?)");
+			
+			ps.setString(1, user.FirstName);
+			ps.setString(2, user.LastName);
+			ps.setPhone(2,)
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	
+
+}
