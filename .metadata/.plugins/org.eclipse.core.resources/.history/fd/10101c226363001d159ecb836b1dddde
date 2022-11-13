@@ -34,7 +34,7 @@ public class Main {
 			
 			switch(c) {
 			case 1:
-				System.out.println(" Login Accountant ");
+				System.out.println(" LOGIN ACCOUNTANT ");
 				System.out.println("-------------------");
 				System.out.println("Enter UserName: ");
 				String Username = sc.next();
@@ -69,7 +69,7 @@ public class Main {
 					
 					int s = sc.nextInt();
 					if(s==1) {
-						System.out.println("New Account");
+						System.out.println("NEW ACCOUNT");
 						System.out.println("-------------------------------");
 						
 						System.out.println("Enter Customer Name");
@@ -159,7 +159,7 @@ public class Main {
 						UserDao user=new UserDaoImpl();
 						System.out.println("Transaction History");
 						System.out.println("---------------------------------");
-						System.out.println("Enter Account No. ");
+						System.out.println("Enter Account No. to view Transaction Records");
 						int acount=sc.nextInt();
 						List<TransactionBean> list=null;
 						try {
@@ -217,7 +217,7 @@ public class Main {
 						int s=sc.nextInt();
 						
 						if(s==1) {
-							System.out.println("            Balance          ");
+							System.out.println("            BALANCE          ");
 							System.out.println("-------------------------------");
 
 							System.out.println("Current Account Balance");
@@ -225,7 +225,7 @@ public class Main {
 							System.out.println("------------------------");
 						}
 						if(s==2) {
-							System.out.println("           Deposite           ");
+							System.out.println("           DEPOSIT             ");
 							System.out.println("-------------------------------");
 
 							System.out.println("Enter Amount to Deposit");
@@ -237,7 +237,7 @@ public class Main {
 						}
 						
 						if(s==3) {
-							System.out.println("          Withdrwal          ");
+							System.out.println("          WITHDRAWL           ");
 							System.out.println("-------------------------------");
 
 							System.out.println("Enter Withdrawl amount");
@@ -258,7 +258,7 @@ public class Main {
 							}catch(CustomerException e) {
 								System.out.println(e.getMessage());
 							}
-							System.out.println("   Transaction History");
+							System.out.println("   TRANSACTION HISTORY");
 							System.out.println("-------------------------------");
 
 							System.out.println("Account No.: " + li.get(0).getAccountNo());
