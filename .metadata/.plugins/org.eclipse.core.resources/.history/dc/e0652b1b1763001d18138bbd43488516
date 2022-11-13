@@ -1,0 +1,31 @@
+package Dao;
+
+import java.util.List;
+
+import Bean.AccountBean;
+import Exception.AccountantException;
+import Exception.CustomerException;
+
+
+public interface AdminDao {
+	
+	public final String username = "admin";
+	public final String password = "12345";
+	
+	public String adminLogin(String Username,String Password) throws AccountantException;
+	
+	public String addCustomer(String name,String email,String pass,String add,String mob) throws CustomerException;
+	
+	public String EditAccount(String AccountNumber) throws AccountantException;
+	
+	public String removeAccount(int AccountNumber) throws CustomerException;
+	
+	public AccountBean getAccount(String AccountNumber) throws CustomerException;
+	
+	public List<AccountBean> getAllcustomer();
+	
+	
+	
+	
+	
+}

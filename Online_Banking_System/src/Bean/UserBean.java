@@ -1,81 +1,94 @@
 package Bean;
 
 public class UserBean {
-	public String FirstName;
-	public String LastName;
-	public String Phone;
-	public String age;
-	public String email;
-	public String Address;
-	public String Gender;
-	public String AadharNum;
-	public String Password;
+	private int Acno;
+	private String name;
+	private int bal;
+	private String mail;
+	private String pass;
+	private String mob;
+	private String add;
 	
 	
-	public String getPassword() {
-		return Password;
+	public int getAcno() {
+		return Acno;
 	}
 
-	public void setPassword(String password) {
-		Password = password;
+
+	public void setAcno(int acno) {
+		Acno = acno;
 	}
 
-	public String getFirstName() {
-		return FirstName;
-	}
-	
-	public String getAge() {
-		return age;
+
+	public String getName() {
+		return name;
 	}
 
-	public void setAge(String age) {
-		this.age = age;
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public void setFirstName(String firstName) {
-		FirstName = firstName;
+
+	public int getBal() {
+		return bal;
 	}
-	public String getLastName() {
-		return LastName;
+
+
+	public void setBal(int bal) {
+		this.bal = bal;
 	}
-	public void setLastName(String lastName) {
-		LastName = lastName;
+
+
+	public String getMail() {
+		return mail;
 	}
-	public String getPhone() {
-		return Phone;
+
+
+	public void setMail(String mail) {
+		this.mail = mail;
 	}
-	public void setPhone(String phone) {
-		Phone = phone;
+
+
+	public String getPass() {
+		return pass;
 	}
-	public String getEmail() {
-		return email;
+
+
+	public void setPass(String pass) {
+		this.pass = pass;
 	}
-	public void setEmail(String email) {
-		this.email = email;
+
+
+	public String getMob() {
+		return mob;
 	}
-	public String getAddress() {
-		return Address;
+
+
+	public void setMob(String mob) {
+		this.mob = mob;
 	}
-	public void setAddress(String address) {
-		Address = address;
+
+
+	public String getAdd() {
+		return add;
 	}
-	public String getGender() {
-		return Gender;
+
+
+	public void setAdd(String add) {
+		this.add = add;
 	}
-	public void setGender(String gender) {
-		Gender = gender;
-	}
-	public String getAadharNum() {
-		return AadharNum;
-	}
-	public void setAadharNum(String aadharNum) {
-		AadharNum = aadharNum;
-	}
+
+
 	@Override
 	public String toString() {
-		return "UserBean [FirstName=" + FirstName + ", LastName=" + LastName + ", Phone=" + Phone + ", email=" + email
-				+ ", Address=" + Address + ", Gender=" + Gender + ", AadharNum=" + AadharNum + "]";
+		return "UserBean [Acno=" + Acno + ", name=" + name + ", bal=" + bal + ", mail=" + mail + ", pass=" + pass
+				+ ", mob=" + mob + ", add=" + add + "]";
 	}
+	
+	
+	
+	
 	
 	
 	

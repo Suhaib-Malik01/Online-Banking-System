@@ -1,0 +1,28 @@
+package Dao;
+
+import java.util.List;
+
+import Bean.AccountBean;
+import Bean.AdminBean;
+
+public interface AdminDao {
+	
+	public final String username = "admin";
+	public final String password = "12345";
+	
+	public String adminLogin(String Username,String Password);
+	
+//	Editing already available account
+	public String EditAccount(String AccountNumber);
+	
+	public String removeAccount(String AccountNumber);
+	
+	public AccountBean getAccount(String AccountNumber);
+	
+	public List<AccountBean> getAllAccount();
+	
+	
+	
+	
+	
+}

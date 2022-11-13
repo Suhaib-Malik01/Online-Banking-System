@@ -2,11 +2,18 @@ package UseCase;
 
 import java.util.*;
 
+import Bean.AccountBean;
+import Bean.TransactionBean;
 import Bean.UserBean;
 import Dao.AdminDao;
 import Dao.AdminDaoImpl;
 import Dao.UserDao;
 import Dao.UserDaoImpl;
+import Exception.AccountException;
+import Exception.AccountantException;
+import Exception.CustomerException;
+
+
 public class Main {
 	
 	public static void main(String[] args) {
@@ -16,103 +23,277 @@ public class Main {
 		
 		boolean flag = true;
 		while(flag) {
-			System.out.println("-----------------------" + "\n"
-					 + "| 1.Login as Admin     |" + "\n" 
-				     + "| 2.Signup as Customer |" + "\n"
-					 + "| 3.Login as Customer  |" + "\n"
-				     + "| 4.Exit               |" + "\n"
-					 + "-----------------------");
-			int n = sc.nextInt();
-			if(n==1) {
-				System.out.println("Enter Username: ");
+			System.out.println("-----------------------------------");
+			System.out.println("      Welcome To Bank of Future    ");
+			System.out.println("------------------------------------"); 
+			System.out.println("1. Accountant Login \r\n"
+					+ "2. Customer Login \r\n");
+			
+			int c=sc.nextInt();
+			
+			
+			switch(c) {
+			case 1:
+				System.out.println(" LOGIN ACCOUNTANT ");
+				System.out.println("-------------------");
+				System.out.println("Enter UserName: ");
 				String Username = sc.next();
 				System.out.print("Enter Password: ");
 				String Password = sc.next();
 				
 				AdminDao admindao = new AdminDaoImpl();
 				
-				String msg = admindao.adminLogin(Username, Password);
+				String msg = null;
+				try {
+					msg = admindao.adminLogin(Username, Password);
+				} catch (AccountantException e1) {
+					e1.printStackTrace();
+				}
 				
 				System.out.println(msg);
-				
-			}
-			if(n==2) {
-				UserBean user = new UserBean();
-				
-				System.out.println("Enter Your First Name: ");
-				String firstName = sc.next();
-				user.setFirstName(firstName);
-				
-				System.out.println("Enter Your Last Name: ");
-				
-				String LastName = sc.next();
-				user.setLastName(LastName);
-				
-				System.out.println("Enter Your age: ");
-				
-				String age = sc.next();
-				
-				user.setAge(age);
-				
-				System.out.println("Enter Your address: ");
-				
-				String address = sc.next();
-				user.setAddress(address);
-				
-				System.out.println("Enter Your email: ");
-				
-				String email = sc.next();
-				
-				user.setEmail(email);
-				
-				System.out.println("Select Gender");
-				System.out.println("1.Male 2.female");
-				String Gender = "";
-				
-				int g = sc.nextInt();
-				
-				Gender = (g==1 ? "Male" : "Female");
-				
-				user.setGender(Gender);
-				
-				System.out.println("Create password: ");
-			    
-				String pass = sc.next();
-				user.setPassword(pass);
-				
-				System.out.println("Enter Your Phone Number: ");
-				
-				String Number = sc.next();
-				
-				user.setPhone(Number);
-				
-				
-				System.out.println("Enter Your Aadhaar Number: ");
-				
-				String Anum = sc.next();
-				
-				user.setAadharNum(Anum);
-				
-				UserDao userdao = new UserDaoImpl();
-				
-				String msg = userdao.SignUp(user);
-				
-				System.out.println(msg);
+				boolean Adminflag = false;
+				if(msg.equals("Login Successfull")) {
+					Adminflag = true;
+				}else {
+					continue;
+				}
+				while(Adminflag) {
+					System.out.println("-----------------------------------------------------\r\n"
+							+ "1. Add New Customer Account\r\n"
+							+ "2. Delete the account\r\n"
+							+ "3. View particular account details\r\n"
+							+ "4. View all the account details\r\n"
+							+ "7. View Transaction History for Customer\r\n"
+							+ "8. exit\r\n"
+							+"-------------------------------------------\r\n");
+					
+					int s = sc.nextInt();
+					if(s==1) {
+						System.out.println("NEW ACCOUNT");
+						System.out.println("-------------------------------");
+						
+						System.out.println("Enter Customer Name");
+			 			String a2=sc.next();
+			 			System.out.println("Enter Account Opening Balance");
+			 			int a3=sc.nextInt();
+			 			System.out.println("Enter Email");
+			 			String a4=sc.next();
+			 			System.out.println("Enter Password");
+			 			String a5=sc.next();
+			 			System.out.println("Enter Mobile number");
+			 			String a6=sc.next();
+			 			System.out.println("Enter Address");
+			 			String a7=sc.next();
+			 			
+			 			
+			 			int s1= 0;
+						try {
+							s1 = admindao.addCustomer(a2,a4,a5,a6,a7);
+							try {
+								admindao.addAccount(a3, s1);
+							} catch (AccountException e) {
+								e.printStackTrace();
+							}
+						} catch (CustomerException e) {
+							e.printStackTrace();
+						}
+			 			if(s1!=0) {
+			 				System.out.println("        Account Added");
+			 				System.out.println("-------------------------------");
+			 			}
+					}
+					if(s==2) {
+						System.out.println("        Remove Account");
+						System.out.println("-------------------------------");
+						System.out.println("Enter Account No.");
+						int ac=sc.nextInt();
+						String x=null;
+						try {
+							x = admindao.removeAccount(ac);
+						} catch (CustomerException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+							
+						}
+						if(x!=null)
+							System.out.println(x);
+					}if(s==3) {
+						System.out.println("       Customer Details");
+						System.out.println("-------------------------------");
+						System.out.println("Enter Customer Account No.");
+						int ac=sc.nextInt();
+						
+						try {
+							AccountBean res=admindao.getAccount(ac);
+							
+							if(res!=null) {
+								System.out.println("******************************");
+								System.out.println("Account No: " + res.getAccountNo());
+								System.out.println("Balance: " + res.getBalance());
+								System.out.println("Customer ID: " + res.getCustomerId());
+								System.out.println("******************************");
+								
+							}else {
+								System.out.println("Account does not Exist");
+								System.out.println("---------------------------");
+							}
+						} catch (CustomerException e) {
+							e.printStackTrace();
+						}
+						
+					}
+					if(s==4) {
+						try {
+							System.out.println("All Customer Details");
+							System.out.println("-------------------------------");
+							List<AccountBean> res=admindao.getAllcustomer();
+							
+							System.out.println(res);
+		
+							
+						} catch (AccountException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					}if(s==7) {
+						UserDao user=new UserDaoImpl();
+						System.out.println("Transaction History");
+						System.out.println("---------------------------------");
+						System.out.println("Enter Account No. to view Transaction Records");
+						int acount=sc.nextInt();
+						List<TransactionBean> list=null;
+						try {
+							list=user.viewTransaction(acount); 
+							System.out.println("Account No.: "+list.get(0).getAccountNo());
+							list.forEach(v->{
+								System.out.println("---------------------------------------------");
+								if(v.getDeposit()!=0)
+									System.out.println("Amount Credit: "+v.getDeposit());
+								if(v.getWithdraw()!=0)
+									System.out.println("Amount Debit: "+v.getWithdraw());
+							});
+						} catch (CustomerException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					}
+					
+					if(s==8) {
+						System.out.println("Thank you!");
+						Adminflag=false;
+					}
+					
+				}
 				break;
+			case 2: 
+				System.out.println("Login Customer");
+				System.out.println("--------------------------");
+				System.out.println("Enter Email:");
+				String username=sc.next();
+				System.out.println("Enter Password");
+				String password=sc.next();
+				System.out.println("Enter Account No");
+				int acno=sc.nextInt();
 				
-			}else if(n==3) {
+				UserDao user=new UserDaoImpl();
 				
-			}else if(n==4) {
-				System.out.println("Thank You");
+				try {
+					UserBean cust = user.Login(username, password,acno);
+					
+					System.out.println("Welcome "+cust.getName());
+					
+					boolean m=true;
+					
+					while(m) {
+						System.out.println("-------------------------------\r\n"
+								+ "1. View Balance\r\n"
+								+ "2. Deposit Money\r\n"
+								+ "3. Withdraw Money\r\n"
+								+ "4. View Transaction History\r\n"
+								+ "99. exit\r\n"
+								+"-------------------------------\r\n");
+
+						
+						int s=sc.nextInt();
+						
+						if(s==1) {
+							System.out.println("            BALANCE          ");
+							System.out.println("-------------------------------");
+
+							System.out.println("Current Account Balance");
+							System.out.println(user.Accountbal(acno)); 
+							System.out.println("------------------------");
+						}
+						if(s==2) {
+							System.out.println("           DEPOSIT             ");
+							System.out.println("-------------------------------");
+
+							System.out.println("Enter Amount to Deposit");
+							int am=sc.nextInt();
+							user.Deposit(acno, am);
+							System.out.println("Your Balance after Deposit");
+							System.out.println(user.Accountbal(acno));
+							System.out.println("----------------------------");
+						}
+						
+						if(s==3) {
+							System.out.println("          WITHDRAWL           ");
+							System.out.println("-------------------------------");
+
+							System.out.println("Enter Withdrawl amount");
+							int wa=sc.nextInt();
+							try {
+								user.Withdraw(acno, wa);
+								System.out.println("Your Balance after Withdrawl");
+								System.out.println(user.Accountbal(acno));
+								System.out.println("-----------------------------");
+							}catch(CustomerException e) {
+								System.out.println(e.getMessage());
+							}
+						}
+						if(s==4) {
+							List<TransactionBean> li=null;
+							try {
+								li= user.viewTransaction(acno);
+							}catch(CustomerException e) {
+								System.out.println(e.getMessage());
+							}
+							System.out.println("   TRANSACTION HISTORY");
+							System.out.println("-------------------------------");
+
+							System.out.println("Account No.: " + li.get(0).getAccountNo());
+							
+							li.forEach(v->{
+								System.out.println("----------------------------------------------------");
+								if(v.getDeposit()!=0)
+									System.out.println("Amount Credit: "+ v.getDeposit());
+								if(v.getWithdraw()!=0)
+									System.out.println("Amount Debit : "+ v.getWithdraw());
+							});
+							
+						}
+						if(s==99) {
+							System.out.println("          Thank You!");
+							System.out.println("-------------------------------");
+
+							m=false;
+						}
+						
+						
+					}
+					break;
+					
+					
+				} catch (CustomerException e) {
+					// TODO Auto-generated catch block
+					System.out.println(e.getMessage());
+				}
+				
 				break;
-			}else {
-				System.out.println("Enter Valid Input");
 			}
 		}
-		
-		
 	}
-	
+
 	
 
 }

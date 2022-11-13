@@ -1,0 +1,22 @@
+package Dao;
+
+import java.util.List;
+
+import Bean.TransactionBean;
+import Bean.UserBean;
+import Exception.CustomerException;
+
+public interface UserDao {
+	
+	public String SignUp(UserBean user);
+	
+	public String login(String email,String Password);
+	
+	public int Accountbal(int accountNumber) throws CustomerException;
+	
+	public int Deposit(int cACno, int amount) throws CustomerException; 
+	
+	public int Withdraw(int cACno, int amount) throws CustomerException;
+	
+	public List<TransactionBean> viewTransaction(int custAccountno) throws CustomerException;
+}

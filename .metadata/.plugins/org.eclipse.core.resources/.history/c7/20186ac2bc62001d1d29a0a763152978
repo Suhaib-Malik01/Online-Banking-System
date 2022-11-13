@@ -1,0 +1,10 @@
+package Dao;
+
+import Bean.UserBean;
+
+public interface UserDao {
+	
+	public String SignUp(UserBean user);
+	
+	public String login(String email,String Password);
+}
