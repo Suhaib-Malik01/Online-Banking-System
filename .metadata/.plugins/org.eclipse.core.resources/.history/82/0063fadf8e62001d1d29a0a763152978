@@ -1,0 +1,78 @@
+package Dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import com.mysql.cj.protocol.Resultset;
+
+import Bean.UserBean;
+import utility.DBUtil;
+
+public class UserDaoImpl implements UserDao {
+
+	@Override
+	public String SignUp(UserBean user) {
+		
+		String msg = "Sign up Failed";
+		
+		
+		
+		try(Connection conn = DBUtil.provideConn()) {
+			PreparedStatement ps = conn.prepareStatement("insert into signup values(?,?,?,?,?,?,?,?,?)");
+			
+			ps.setString(1, user.FirstName);
+			ps.setString(2, user.LastName);
+			ps.setString(3, user.Phone);
+			ps.setString(4, user.Password);
+			ps.setString(5, user.age);
+			ps.setString(6, user.email);
+			ps.setString(7, user.Address);
+			ps.setString(8,user.Gender);
+			ps.setString(9, user.AadharNum);
+			
+			
+			int x = ps.executeUpdate();
+
+			if(x>0) {
+				msg = "Data Added";
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return msg;
+	}
+
+	@Override
+	public String login(String email, String Password) {
+		String msg = "Inavlid username or password";
+		
+		try(Connection conn = DBUtil.provideConn()){
+			
+			PreparedStatement ps = conn.prepareStatement("Select * from signup");
+			
+			ResultSet res = ps.executeQuery();
+			
+			while(res.next()) {
+				String Email = res.getString("email");
+				
+				String password = res.getString("password");
+				
+				if(email.equals(Email) && Password.equals(password)) {
+					msg = "Login Successful";
+				}
+			}
+			
+		}catch(SQLException e) {
+			
+		}
+		return msg;
+	}
+	
+	
+	
+
+}

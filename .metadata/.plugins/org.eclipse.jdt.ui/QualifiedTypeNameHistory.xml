@@ -4,9 +4,18 @@
     <fullyQualifiedTypeName name="Dao.AdminDao"/>
     <fullyQualifiedTypeName name="Dao.AdminDaoImpl"/>
     <fullyQualifiedTypeName name="Bean.UserBean"/>
-    <fullyQualifiedTypeName name="java.sql.Connection"/>
-    <fullyQualifiedTypeName name="utility.DBUtil"/>
-    <fullyQualifiedTypeName name="java.sql.PreparedStatement"/>
     <fullyQualifiedTypeName name="Dao.UserDao"/>
     <fullyQualifiedTypeName name="Dao.UserDaoImpl"/>
+    <fullyQualifiedTypeName name="com.mysql.cj.protocol.Resultset"/>
+    <fullyQualifiedTypeName name="utility.DBUtil"/>
+    <fullyQualifiedTypeName name="java.sql.Connection"/>
+    <fullyQualifiedTypeName name="java.sql.PreparedStatement"/>
+    <fullyQualifiedTypeName name="java.sql.SQLException"/>
+    <fullyQualifiedTypeName name="Exception.AccountantException"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="Exception.CustomerException"/>
+    <fullyQualifiedTypeName name="Exception.AccountException"/>
+    <fullyQualifiedTypeName name="Bean.AccountBean"/>
+    <fullyQualifiedTypeName name="Bean.TransactionBean"/>
 </qualifiedTypeNameHistroy>

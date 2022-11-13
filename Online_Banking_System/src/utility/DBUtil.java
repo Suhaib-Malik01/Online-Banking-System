@@ -3,7 +3,7 @@ package utility;
 import java.sql.*;
 
 public class DBUtil {
-	public static Connection provideConn() {
+	public static Connection provideConnection() {
 		Connection connect = null;
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
