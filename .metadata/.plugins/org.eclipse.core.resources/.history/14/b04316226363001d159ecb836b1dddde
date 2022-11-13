@@ -52,7 +52,7 @@ public class UserDaoImpl implements UserDao {
 				
 				
 			}else {
-				throw new CustomerException("Invalid Username or password...");
+				throw new CustomerException("Invalid Username or password....Try Again!");
 			}
 			
 		} catch (SQLException e) {
