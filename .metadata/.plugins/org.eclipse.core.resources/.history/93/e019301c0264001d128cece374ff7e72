@@ -156,8 +156,8 @@ public class AdminDaoImpl implements AdminDao {
 		     ps.setString(1,name);
 		     ps.setString(2,email);
 		     ps.setString(3,pass);
-		     ps.setString(4,mob);
-		     ps.setString(5,add);
+		     ps.setString(4,add);
+		     ps.setString(5,mob);
 		     
 			int x=ps.executeUpdate();
 			

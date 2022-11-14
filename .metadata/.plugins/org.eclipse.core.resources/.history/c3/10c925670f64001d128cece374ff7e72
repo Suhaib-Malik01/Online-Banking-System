@@ -58,13 +58,13 @@ public class Main {
 				}
 				while(Adminflag) {
 					System.out.println("-----------------------------------------------------\r\n"
-							+ "1. Add New Customer Account\n"
-							+ "2. Delete the account\n"
-							+ "3. View particular account details\n"
-							+ "4. View all the account details\n"
-							+ "7. View Transaction History for Customer\n"
+							+ "1. Add New Customer Account\r\n"
+							+ "2. Delete the account\r\n"
+							+ "3. View particular account details\r\n"
+							+ "4. View all the account details\r\n"
+							+ "7. View Transaction History for Customer\r\n"
 							+ "8. exit\r\n"
-							+"-------------------------------------------\n");
+							+"-------------------------------------------\r\n");
 					
 					int s = sc.nextInt();
 					if(s==1) {
@@ -163,19 +163,14 @@ public class Main {
 						List<TransactionBean> list=null;
 						try {
 							list=user.viewTransaction(acount); 
-							if(list.size()==0) {
-								System.out.println("Transaction not Found");
-							}else {
-								System.out.println("Account No.: "+list.get(0).getAccountNo());
-								list.forEach(v->{
-									System.out.println("---------------------------------------------");
-									if(v.getDeposit()!=0)
-										System.out.println("Amount Credit: "+v.getDeposit());
-									if(v.getWithdraw()!=0)
-										System.out.println("Amount Debit: "+v.getWithdraw());
-								});
-							}
-							
+							System.out.println("Account No.: "+list.get(0).getAccountNo());
+							list.forEach(v->{
+								System.out.println("---------------------------------------------");
+								if(v.getDeposit()!=0)
+									System.out.println("Amount Credit: "+v.getDeposit());
+								if(v.getWithdraw()!=0)
+									System.out.println("Amount Debit: "+v.getWithdraw());
+							});
 						} catch (CustomerException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
@@ -211,12 +206,12 @@ public class Main {
 					
 					while(m) {
 						System.out.println("-------------------------------\r\n"
-								+ "1. View Balance\n"
-								+ "2. Deposit Money\n"
-								+ "3. Withdraw Money\n"
-								+ "4. View Transaction History\n"
+								+ "1. View Balance\r\n"
+								+ "2. Deposit Money\r\n"
+								+ "3. Withdraw Money\r\n"
+								+ "4. View Transaction History\r\n"
 								+ "99. exit\r\n"
-								+"-------------------------------\n");
+								+"-------------------------------\r\n");
 
 						
 						int s=sc.nextInt();
@@ -291,6 +286,7 @@ public class Main {
 					
 					
 				} catch (CustomerException e) {
+					// TODO Auto-generated catch block
 					System.out.println(e.getMessage());
 				}
 				

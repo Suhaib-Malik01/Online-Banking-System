@@ -105,7 +105,7 @@ public class UserDaoImpl implements UserDao {
 				ps2.setInt(1, custACno);
 				ps2.setInt(2, amount);
 				
-				int rs1=ps2.executeUpdate();
+				int rs2=ps2.executeUpdate();
 			}else {
 				throw new CustomerException("Account not found");
 			}
@@ -179,9 +179,9 @@ public class UserDaoImpl implements UserDao {
 				
 				list.add(ts);
 			}
-//			if(list.size()==0) {
-//				throw new CustomerException("Transaction not Found");
-//			}
+			if(list.size()==0) {
+				throw new CustomerException("Transaction not Found");
+			}
 			
 			
 		} catch (SQLException e) {
