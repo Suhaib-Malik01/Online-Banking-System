@@ -20,7 +20,7 @@ public class UserDaoImpl implements UserDao {
 		
 		try(Connection conn = DBUtil.provideConnection()) {
 			
-		PreparedStatement ps= conn.prepareStatement("select * from Customer c inner join Account a on c.custid=a.custid where custmail = ? and custpass = ? and custACno=?" );			
+		PreparedStatement ps= conn.prepareStatement("select * from Customer c inner join Account a on c.custid=a.custid where custmail = ? and custpass = ? and custACno=?;" );			
 			
 			ps.setString(1, username);
 			ps.setString(2, password);
@@ -70,7 +70,7 @@ public class UserDaoImpl implements UserDao {
 		
 		try(Connection conn = DBUtil.provideConnection()) {
 			
-			PreparedStatement ps= conn.prepareStatement("Select custbal from Account where custACno = ?" );			
+			PreparedStatement ps= conn.prepareStatement("Select custbal from Account where custACno = ?;" );			
 				
 				ps.setInt(1, accountNumber);
 				
@@ -92,7 +92,7 @@ public class UserDaoImpl implements UserDao {
 		
 		try(Connection conn = DBUtil.provideConnection()) {
 			
-			PreparedStatement ps= conn.prepareStatement("update Account set custbal=custbal+? where custacno = ?" );			
+			PreparedStatement ps= conn.prepareStatement("update Account set custbal=custbal+? where custacno = ?;" );			
 				
 				ps.setInt(1, amount);
 				ps.setInt(2, custACno);
@@ -100,12 +100,12 @@ public class UserDaoImpl implements UserDao {
 				int rs= ps.executeUpdate();
 				
 			if(rs>0) {
-				PreparedStatement ps2=conn.prepareStatement("insert into Transaction values(?,?,0)");
+				PreparedStatement ps2=conn.prepareStatement("insert into Transaction values(?,?,0);");
 				
 				ps2.setInt(1, custACno);
 				ps2.setInt(2, amount);
 				
-				int rs1=ps2.executeUpdate();
+				int rs2=ps2.executeUpdate();
 			}else {
 				throw new CustomerException("Account not found");
 			}
@@ -124,7 +124,7 @@ public class UserDaoImpl implements UserDao {
 		if(total_bal>=amount) {
 			try(Connection conn = DBUtil.provideConnection()) {
 				
-				PreparedStatement ps= conn.prepareStatement("update Account set custbal=custbal-? where custACno = ?" );			
+				PreparedStatement ps= conn.prepareStatement("update Account set custbal=custbal-? where custACno = ?;" );			
 					
 					ps.setInt(1, amount);
 					ps.setInt(2, custACno);
@@ -132,7 +132,7 @@ public class UserDaoImpl implements UserDao {
 					int rs= ps.executeUpdate();
 					
 				if(rs>0) {
-					PreparedStatement ps2=conn.prepareStatement("insert into Transaction values(?,0,?)");
+					PreparedStatement ps2=conn.prepareStatement("insert into Transaction values(?,0,?,NOW());");
 					
 					ps2.setInt(1, custACno);
 					ps2.setInt(2, amount);
@@ -162,7 +162,7 @@ public class UserDaoImpl implements UserDao {
 		
 		try(Connection conn = DBUtil.provideConnection()) {
 			
-			PreparedStatement ps=conn.prepareStatement("select * from transaction where custAcno=?");
+			PreparedStatement ps=conn.prepareStatement("select * from transaction where custAcno=?;");
 			ps.setInt(1, custAccountno);
 			
 			ResultSet rs=ps.executeQuery();
@@ -179,9 +179,9 @@ public class UserDaoImpl implements UserDao {
 				
 				list.add(ts);
 			}
-//			if(list.size()==0) {
-//				throw new CustomerException("Transaction not Found");
-//			}
+			if(list.size()==0) {
+				throw new CustomerException("Transaction not Found");
+			}
 			
 			
 		} catch (SQLException e) {

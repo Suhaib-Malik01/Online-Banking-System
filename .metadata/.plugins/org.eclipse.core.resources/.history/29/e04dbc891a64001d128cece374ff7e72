@@ -163,19 +163,14 @@ public class Main {
 						List<TransactionBean> list=null;
 						try {
 							list=user.viewTransaction(acount); 
-							if(list.size()==0) {
-								System.out.println("Transaction not Found");
-							}else {
-								System.out.println("Account No.: "+list.get(0).getAccountNo());
-								list.forEach(v->{
-									System.out.println("---------------------------------------------");
-									if(v.getDeposit()!=0)
-										System.out.println("Amount Credit: "+v.getDeposit());
-									if(v.getWithdraw()!=0)
-										System.out.println("Amount Debit: "+v.getWithdraw());
-								});
-							}
-							
+							System.out.println("Account No.: "+list.get(0).getAccountNo());
+							list.forEach(v->{
+								System.out.println("---------------------------------------------");
+								if(v.getDeposit()!=0)
+									System.out.println("Amount Credit: "+v.getDeposit());
+								if(v.getWithdraw()!=0)
+									System.out.println("Amount Debit: "+v.getWithdraw());
+							});
 						} catch (CustomerException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
