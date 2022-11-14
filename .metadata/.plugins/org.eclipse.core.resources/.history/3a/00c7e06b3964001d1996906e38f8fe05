@@ -167,12 +167,12 @@ public class Main {
 								System.out.println("Transaction not Found");
 							}else {
 								System.out.println("Account No.: "+list.get(0).getAccountNo());
-								list.forEach(i->{
+								list.forEach(v->{
 									System.out.println("---------------------------------------------");
-									if(i.getDeposit()!=0)
-										System.out.println("Amount Credit: "+i.getDeposit());
-									if(i.getWithdraw()!=0)
-										System.out.println("Amount Debit: "+i.getWithdraw());
+									if(v.getDeposit()!=0)
+										System.out.println("Amount Credit: "+v.getDeposit());
+									if(v.getWithdraw()!=0)
+										System.out.println("Amount Debit: "+v.getWithdraw());
 								});
 							}
 							
@@ -234,8 +234,8 @@ public class Main {
 							System.out.println("-------------------------------");
 
 							System.out.println("Enter Amount to Deposit");
-							int a=sc.nextInt();
-							user.Deposit(acno, a);
+							int am=sc.nextInt();
+							user.Deposit(acno, am);
 							System.out.println("Your Balance after Deposit");
 							System.out.println(user.Accountbal(acno));
 							System.out.println("----------------------------");
@@ -246,9 +246,9 @@ public class Main {
 							System.out.println("-------------------------------");
 
 							System.out.println("Enter Withdrawl amount");
-							int a=sc.nextInt();
+							int wa=sc.nextInt();
 							try {
-								user.Withdraw(acno, a);
+								user.Withdraw(acno, wa);
 								System.out.println("Your Balance after Withdrawl");
 								System.out.println(user.Accountbal(acno));
 								System.out.println("-----------------------------");
@@ -257,23 +257,23 @@ public class Main {
 							}
 						}
 						if(s==4) {
-							List<TransactionBean> list=null;
+							List<TransactionBean> li=null;
 							try {
-								list= user.viewTransaction(acno);
+								li= user.viewTransaction(acno);
 							}catch(CustomerException e) {
 								System.out.println(e.getMessage());
 							}
 							System.out.println("   Transaction History");
 							System.out.println("-------------------------------");
 
-							System.out.println("Account No.: " + list.get(0).getAccountNo());
+							System.out.println("Account No.: " + li.get(0).getAccountNo());
 							
-							list.forEach(i->{
+							li.forEach(v->{
 								System.out.println("----------------------------------------------------");
-								if(i.getDeposit()!=0)
-									System.out.println("Amount Credit: "+ i.getDeposit());
-								if(i.getWithdraw()!=0)
-									System.out.println("Amount Debit : "+ i.getWithdraw());
+								if(v.getDeposit()!=0)
+									System.out.println("Amount Credit: "+ v.getDeposit());
+								if(v.getWithdraw()!=0)
+									System.out.println("Amount Debit : "+ v.getWithdraw());
 							});
 							
 						}
